@@ -1,0 +1,19 @@
+#Datasets (pandas)
+import pandas as pd
+wine=pd.read_csv("/content/wine.csv")
+x= wine[["citric acid","pH"]]
+
+#load Kmeans&fit
+from sklearn.cluster import KMeans
+ML=KMeans(n_clusters=3, max_iter= 5)
+ML=ML.fit(x)
+
+#Centres and labels
+centres= ML.cluster_centers_
+labels= ML.labels_
+
+#graph plotting
+from matplotlib import pyplot as plt
+xaxis=wine["citric acid"]
+yaxis= wine["pH"]
+plt.scatter(x=xaxis,y=yaxis,c=labels,cmap="copper")

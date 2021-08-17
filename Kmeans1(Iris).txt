@@ -1,0 +1,19 @@
+#Datasets (pandas)
+import pandas as pd
+iris=pd.read_csv("/content/irisexcel.csv")
+x=iris[["sepal_length","sepal_width"]]
+
+#load Kmeans&fit
+from sklearn.cluster import KMeans
+ML=KMeans(n_clusters=2, max_iter= 4)
+ML=ML.fit(x)
+
+#Centres and labels
+centres= ML.cluster_centers_
+labels= ML.labels_
+
+#graph plotting
+from matplotlib import pyplot as plt
+xaxis=iris["sepal_length"]
+yaxis=iris["sepal_width"]
+plt.scatter(x=xaxis,y=yaxis,c=labels,cmap="rainbow")

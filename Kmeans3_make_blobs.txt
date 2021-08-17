@@ -1,0 +1,20 @@
+import numpy as np
+from sklearn.datasets import make_blobs
+x1,y1= make_blobs(n_samples=150, centers=5, n_features=4,random_state=2)
+from matplotlib import pyplot as plt
+%matplotlib inline
+print(x1.shape,y1.shape)
+plt.figure(figsize=(11,8))
+plt.grid(True)
+plt.scatter(x1[:,0],x1[:,1],cmap="copper")
+plt.show()
+
+from sklearn.cluster import KMeans
+ML=KMeans(n_clusters=4, max_iter= 5)
+Ml=ML.fit(x1)
+centres= ML.cluster_centers_
+labels= ML.labels_
+print(centres)
+print(labels)
+plt.scatter(x1[:,0],x1[:,1],c=labels,cmap="copper")
+plt.show()
